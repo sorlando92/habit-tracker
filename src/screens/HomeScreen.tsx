@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { View, Button, StyleSheet } from "react-native";
 import ToDoList from "../components/ToDoList";
 import AddToDoModal from "../components/AddTodoModal";
+import { ToDo } from "../interfaces/todoInterface";
 
 const HomeScreen: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<ToDo[]>([]);
   const [todoTitle, setTodoTitle] = useState("");
   const [todoDescription, setTodoDescription] = useState("");
 
@@ -13,7 +14,11 @@ const HomeScreen: React.FC = () => {
 
   const handleSaveTodo = (title: string, description: string) => {
     if (title.trim() !== "" && description.trim() !== "") {
-      const newTodo = `${title}: ${description}`;
+      const newTodo: ToDo = {
+        id: Math.random().toString(),
+        title,
+        description,
+      };
       if (selectedTodoIndex !== null) {
         // Edit existing todo
         const updatedTodos = [...todos];
@@ -36,11 +41,10 @@ const HomeScreen: React.FC = () => {
     setTodos(updatedTodos);
   };
 
-  const handleEditTodo = (index: number, todo: string) => {
-    const [title, description] = todo.split(": ");
+  const handleEditTodo = (index: number, todo: ToDo) => {
     setSelectedTodoIndex(index);
-    setTodoTitle(title);
-    setTodoDescription(description);
+    setTodoTitle(todo.title);
+    setTodoDescription(todo.description);
     setIsModalVisible(true);
   };
 

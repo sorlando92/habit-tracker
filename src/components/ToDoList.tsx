@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { ToDo } from "../interfaces/todoInterface";
 
 interface ToDoListProps {
-  todos: string[];
+  todos: ToDo[];
   onDeleteTodo: (index: number) => void;
-  onEditTodo: (index: number, todo: string) => void;
+  onEditTodo: (index: number, todo: ToDo) => void;
 }
 
 const ToDoList: React.FC<ToDoListProps> = ({ todos, onDeleteTodo, onEditTodo }) => {
-  const handleEditTodo = (index: number, todo: string) => {
+  const handleEditTodo = (index: number, todo: ToDo) => {
     onEditTodo(index, todo);
   };
 
-  const renderTodoItem = ({ item, index }: { item: string; index: number }) => (
+  const renderTodoItem = ({ item, index }: { item: ToDo; index: number }) => (
     <View style={styles.todoItem}>
-      <Text>{item}</Text>
+      <Text>{item.title}</Text>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={() => handleEditTodo(index, item)}>
           <FontAwesome name="pencil" size={20} style={styles.icon} />

@@ -13,7 +13,7 @@ const HomeScreen: React.FC = () => {
   const [selectedTodoIndex, setSelectedTodoIndex] = useState<number | null>(null);
 
   const handleSaveTodo = (title: string, description: string) => {
-    if (title.trim() !== "" && description.trim() !== "") {
+    if (title.trim() !== "") {
       const newTodo: ToDo = {
         id: Math.random().toString(),
         title,

@@ -34,7 +34,7 @@ const AddToDoModal: React.FC<AddToDoModalProps> = ({ visible, onClose, onSave, i
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.title}>Add ToDo</Text>
+          <Text style={styles.title}>{title ? "Edit To Do" : "Add To Do"}</Text>
           <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={setTitle} />
           <TextInput style={[styles.input, styles.descriptionInput]} placeholder="Description" value={description} onChangeText={setDescription} multiline />
           <View style={styles.buttonContainer}>

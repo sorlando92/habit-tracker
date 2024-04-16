@@ -2,9 +2,9 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
-import HomeScreen from "./src/screens/HomeScreen";
-import ToDosScreen from "./src/screens/ToDoScreen";
-import HabitsScreen from "./src/screens/HabitsScreen";
+import HomeScreen from "./src/screens/screenHome";
+import ToDosScreen from "./src/screens/screenTasks";
+import HabitsScreen from "./src/screens/screenHabits";
 
 const Tab = createBottomTabNavigator();
 

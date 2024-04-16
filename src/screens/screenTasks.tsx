@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { View, Button, StyleSheet } from "react-native";
 import AddToDoModal from "../components/AddTodoModal";
 import ToDoList from "../components/ToDoList";
-import { ToDo } from "../interfaces/todoInterface";
-import { fetchTodosFromAPI } from "../utilities/ToDoUtility";
+import { Task } from "../interfaces/Interfaces";
+import { fetchTodosFromAPI } from "../utilities/utilityTask";
 
 const ToDosScreen: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [todos, setTodos] = useState<ToDo[]>([]);
+  const [todos, setTodos] = useState<Task[]>([]);
   const [todoTitle, setTodoTitle] = useState("");
   const [todoDescription, setTodoDescription] = useState("");
 
@@ -24,11 +24,11 @@ const ToDosScreen: React.FC = () => {
     };
 
     fetchToDos();
-  });
+  }, []);
 
   const handleSaveTodo = (title: string, description: string) => {
     if (title.trim() !== "") {
-      const newTodo: ToDo = {
+      const newTodo: Task = {
         id: Math.random(),
         title,
         description,
@@ -56,7 +56,7 @@ const ToDosScreen: React.FC = () => {
     setTodos(updatedTodos);
   };
 
-  const handleEditTodo = (index: number, todo: ToDo) => {
+  const handleEditTodo = (index: number, todo: Task) => {
     setSelectedTodoIndex(index);
     setTodoTitle(todo.title);
     setTodoDescription(todo.description);

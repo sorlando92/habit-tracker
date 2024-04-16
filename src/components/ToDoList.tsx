@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { ToDo } from "../interfaces/todoInterface";
+import { Task } from "../interfaces/Interfaces";
 
 interface ToDoListProps {
-  todos: ToDo[];
+  todos: Task[];
   onDeleteTodo: (index: number) => void;
-  onEditTodo: (index: number, todo: ToDo) => void;
+  onEditTodo: (index: number, todo: Task) => void;
 }
 
 const ToDoList: React.FC<ToDoListProps> = ({ todos, onDeleteTodo, onEditTodo }) => {
@@ -26,17 +26,13 @@ const ToDoList: React.FC<ToDoListProps> = ({ todos, onDeleteTodo, onEditTodo }) 
     }).start();
   };
 
-  const renderTodoItem = ({ item, index }: { item: ToDo; index: number }) => {
+  const renderTodoItem = ({ item, index }: { item: Task; index: number }) => {
     const isExpanded = index === expandedTodoIndex;
 
     const heightInterpolation = animation.interpolate({
       inputRange: [0, 1],
       outputRange: [0, isExpanded && item.description ? 100 : 0],
     });
-
-    const animatedStyles = {
-      height: heightInterpolation,
-    };
 
     return (
       <View style={styles.todoContainer}>
@@ -65,7 +61,7 @@ const ToDoList: React.FC<ToDoListProps> = ({ todos, onDeleteTodo, onEditTodo }) 
 
 const styles = StyleSheet.create({
   todoContainer: {
-    backgroundColor: "#c0c0c0",
+    backgroundColor: "#97e7f5",
     paddingHorizontal: 5,
     borderRadius: 10,
     margin: 10,
